@@ -1,0 +1,25 @@
+<?php //netteCache[01]000194a:2:{s:4:"time";s:21:"0.15263000 1237397100";s:2:"df";a:1:{s:109:"/mnt/data/accounts/p/papousek/data/www/subdomains/intersob/document_root/../app/templates/Default.tasks.phtml";i:1237396954;}}?><?php
+// template /mnt/data/accounts/p/papousek/data/www/subdomains/intersob/document_root/../app/templates/Default.tasks.phtml
+?><?php $_cb = CurlyBracketsFilter::initState($template) ?><?php
+if (SnippetHelper::$outputAllowed) {
+?><table class="table-1">
+<thead>
+    <?php foreach ($iterator = $_cb->its[] = new SmartCachingIterator($columns) as $column): ?>
+    <th><?php echo $template->{$_cb->escape}($column) ?></th>
+    <?php endforeach; array_pop($_cb->its); $iterator = end($_cb->its) ?>
+</thead>
+<tbody>
+<?php foreach ($iterator = $_cb->its[] = new SmartCachingIterator($rows) as $num => $row): ?>
+<tr<?php if (!$iterator->isOdd()): ?> class="even"<?php endif ?>>
+    <td><?php echo $template->{$_cb->escape}($row->taskID) ?></td>
+	<td><?php echo $template->{$_cb->escape}($row->taskName) ?></td>
+	<td><?php echo $template->{$_cb->escape}($row->avgScore) ?><?php if ($row->avgScore == null): ?>-<?php endif ?></td>
+	<td><?php echo $template->{$_cb->escape}($row->maxScore) ?><?php if ($row->maxScore == null): ?>-<?php endif ?></td>
+	<td><?php echo $template->{$_cb->escape}($row->minScore) ?><?php if ($row->minScore == null): ?>-<?php endif ?></td>
+	<td><?php echo $template->{$_cb->escape}($row->numSolutions) ?></td>
+</tr>
+<?php endforeach; array_pop($_cb->its); $iterator = end($_cb->its) ?>
+</tbody>
+</table><?php
+}
+?>

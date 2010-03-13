@@ -1,0 +1,27 @@
+<?php //netteCache[01]000170a:2:{s:4:"time";s:21:"0.82158700 1234992944";s:2:"df";a:1:{s:86:"/home/papi/workspace/php/intersob/document_root/../app/templates/Default.default.phtml";i:1234992667;}}?><?php
+// template /home/papi/workspace/php/intersob/document_root/../app/templates/Default.default.phtml
+?><?php $_cb = CurlyBracketsFilter::initState($template) ?><?php
+if (SnippetHelper::$outputAllowed) {
+?><?php $i = 0;$before = -1; $class = sizeof($tables) ?>
+<?php foreach ($iterator = $_cb->its[] = new SmartCachingIterator($tables) as $rows): ?>
+<table class="table-<?php echo $template->{$_cb->escape}($class) ?>">
+<thead>
+    <?php foreach ($iterator = $_cb->its[] = new SmartCachingIterator($columns) as $column): ?>
+    <th><?php echo $template->{$_cb->escape}($column) ?></th>
+    <?php endforeach; array_pop($_cb->its); $iterator = end($_cb->its) ?>
+</thead>
+<tbody>
+<?php foreach ($iterator = $_cb->its[] = new SmartCachingIterator($rows) as $num => $row): ?>
+<tr<?php if (!$iterator->isOdd()): ?> class="even"<?php endif ?>>
+	<?php $i++ ?>
+	<td><?php if (($before != $row->score)): ?><?php echo $template->{$_cb->escape}($i) ?>.<?php endif ?></td>
+	<td><?php echo $template->{$_cb->escape}(substr($row->teamName,0,35)) ?><?php if ((strlen($row->teamName) > 35)): ?>...<?php endif ?></td>
+	<td><?php echo $template->{$_cb->escape}($row->score) ?><?php if (($row->score == null)): ?>0<?php endif ?></td>
+	<?php $before = $row->score ?>
+</tr>
+<?php endforeach; array_pop($_cb->its); $iterator = end($_cb->its) ?>
+</tbody>
+</table>
+<?php endforeach; array_pop($_cb->its); $iterator = end($_cb->its) ?><?php
+}
+?>

@@ -1,0 +1,19 @@
+<table class="table-1">
+<thead>
+    {foreach $columns as $column}
+    <th>{$column}</th>
+    {/foreach}
+</thead>
+<tbody>
+{foreach $rows as $num => $row}
+<tr{if !$iterator->isOdd()} class="even"{/if}>
+    <td>{=$row->taskID}</td>
+	<td>{=$row->taskName}</td>
+	<td>{=$row->avgScore}{if $row->avgScore == null}-{/if}</td>
+	<td>{=$row->maxScore}{if $row->maxScore == null}-{/if}</td>
+	<td>{=$row->minScore}{if $row->minScore == null}-{/if}</td>
+	<td>{=$row->numSolutions}</td>
+</tr>
+{/foreach}
+</tbody>
+</table>

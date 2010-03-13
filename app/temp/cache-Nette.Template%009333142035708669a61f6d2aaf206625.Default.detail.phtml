@@ -1,0 +1,36 @@
+<?php //netteCache[01]000195a:2:{s:4:"time";s:21:"0.80868300 1237398237";s:2:"df";a:1:{s:110:"/mnt/data/accounts/p/papousek/data/www/subdomains/intersob/document_root/../app/templates/Default.detail.phtml";i:1237396954;}}?><?php
+// template /mnt/data/accounts/p/papousek/data/www/subdomains/intersob/document_root/../app/templates/Default.detail.phtml
+?><?php $_cb = CurlyBracketsFilter::initState($template) ?><?php
+if (SnippetHelper::$outputAllowed) {
+?><?php $i = 0; $before = -1; ?>
+<table class="table-1">
+<thead>
+	<tr>
+		<th>#</th>
+		<th>Tým</th>
+		<th>Celkem</th>
+		<?php foreach ($iterator = $_cb->its[] = new SmartCachingIterator($tasks) as $task): ?>
+		<th class="taskID"><?php echo $template->{$_cb->escape}($task->taskID) ?></th>
+		<?php endforeach; array_pop($_cb->its); $iterator = end($_cb->its) ?>
+	</tr>
+</thead>
+<tbody>
+<?php foreach ($iterator = $_cb->its[] = new SmartCachingIterator($teams) as $team): ?>
+<tr>
+	<?php $i++; ?>
+	<td><?php if ($before != $team["score"]): ?><?php echo $template->{$_cb->escape}($i) ?>.<?php endif ?></td>
+	<td><?php echo $template->{$_cb->escape}($team["teamName"]) ?></td>
+	<td><?php if (!$team["score"]): ?>0<?php endif ?><?php echo $template->{$_cb->escape}($team["score"]) ?></td>
+	<?php foreach ($iterator = $_cb->its[] = new SmartCachingIterator($team["tasks"]) as $task): ?>
+	<td class="solution<?php if (($task["taskAvgScore"] <= $task["taskScore"]) && ($task["taskScore"] > 0)): ?>-over<?php endif ?><?php if (($task["taskAvgScore"] > $task["taskScore"]) && ($task["taskScore"] > 0)): ?>-lower<?php endif ?>">
+		<?php if (!$task["taskScore"]): ?>-<?php endif ?>
+		<?php echo $template->{$_cb->escape}($task["taskScore"]) ?>
+	</td>
+	<?php $before = $team["score"]; ?>
+	<?php endforeach; array_pop($_cb->its); $iterator = end($_cb->its) ?>
+</tr>
+<?php endforeach; array_pop($_cb->its); $iterator = end($_cb->its) ?>
+</tbody>
+</table><?php
+}
+?>

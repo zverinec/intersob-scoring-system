@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tasks>
+	<task name="Konstrukce">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="hanka" />
+		</surveyors>
+	</task>
+	<task name="Blikače">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="vojtak" />
+		</surveyors>
+	</task>
+	<task name="Komprese obrázků">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="janaf" />
+            <user name="eva" />
+		</surveyors>
+	</task>
+	<task name="Pravidlo přesunu">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="ondrab" />
+			<user name="janat" />
+		</surveyors>
+	</task>
+	<task name="Klávesnicová šifra">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="janat" />
+		</surveyors>
+	</task>
+	<task name="Multimediální zvířátka">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="iva" />
+		</surveyors>
+	</task>
+	<task name="Fyzikální hrátky">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="hp" />
+		</surveyors>
+	</task>
+	<task name="Barvy, barvy, barvy">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="honzap" />
+		</surveyors>
+	</task>
+	<task name="FI foto">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="janat" />
+		</surveyors>
+	</task>
+	<task name="Ochrana přírody">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="petra" />
+		</surveyors>
+	</task>
+	<task name="Rychlokurz kryptografie">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+            <user name="radek" />
+		</surveyors>
+	</task>
+	<task name="Ze života rostlin">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="terkan" />
+		</surveyors>
+	</task>
+	<task name="O konci světa">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="radek" />
+		</surveyors>
+	</task>
+    <task name="Řecký sběr">
+        <description></description>
+        <surveyors>
+            <user name="admin" />
+            <user name="radek" />
+            <user name="barca" />
+            <user name="radek" />
+        </surveyors>
+    </task>
+	<task name="Mezihra">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="vojtak" />
+		</surveyors>
+	</task>
+	<task name="Námořní logika">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="radek" />
+		</surveyors>
+	</task>
+</tasks>

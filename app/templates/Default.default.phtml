@@ -1,0 +1,21 @@
+<?php $i = 0;$before = -1; $class = sizeof($tables) ?>
+{foreach $tables AS $rows}
+<table class="table-{=$class}">
+<thead>
+    {foreach $columns as $column}
+    <th>{$column}</th>
+    {/foreach}
+</thead>
+<tbody>
+{foreach $rows as $num => $row}
+<tr{if !$iterator->isOdd()} class="even"{/if}>
+	<?php $i++ ?>
+	<td>{if ($before != $row->score)}{=$i}.{/if}</td>
+	<td>{=substr($row->teamName,0,35)}{if (strlen($row->teamName) > 35)}...{/if}</td>
+	<td>{=$row->score}{if ($row->score == null)}0{/if}</td>
+	<?php $before = $row->score ?>
+</tr>
+{/foreach}
+</tbody>
+</table>
+{/foreach}
