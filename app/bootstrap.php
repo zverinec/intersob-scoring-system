@@ -14,6 +14,8 @@ require_once LIBS_DIR . '/Nette/loader.php';
 // Step 2b: load configuration from config.ini file
 Environment::loadConfig();
 
+Debug::enable();
+
 // Step 2c: enable RobotLoader - this allows load all classes automatically
 $loader = new /*Nette\Loaders\*/RobotLoader();
 $loader->addDirectory(APP_DIR);
