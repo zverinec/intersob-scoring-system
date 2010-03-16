@@ -88,13 +88,16 @@ tr.even {
 th.taskID {
     text-align: center;
 }
-form,ul.error {
+form,.error, .success {
 	margin: 5px;
 }
-ul.error {
+.error, .success {
 	background: #FFA900;
 	color: #ffffff;
 	padding: 5px;
+}
+div.error, div.success {
+    font-size: 1.5em;
 }
 ul.error li {
 	display: block;
