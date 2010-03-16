@@ -23,6 +23,9 @@
 		{/if}
 
 	</ul>
+	{foreach $flashes AS $flash}
+	    <div class="{$flash->type}">{!=$flash->message}</div>
+	{/foreach}
 	{block #content}{/block}
 </div>
 </body>
