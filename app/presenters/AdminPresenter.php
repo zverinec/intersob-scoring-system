@@ -26,10 +26,8 @@ class AdminPresenter extends AuthPresenter {
 
 
     public function renderGenerateImport() {
-	$this->getTemplate()->teams = dibi::query("
-	    SELECT *
-	    FROM [".Intersob::DATABASE_PREFIX.Intersob::DATABASE_TABLE_TEAMS."]"
-	);
+	header ("content-type: text/xml");
+	$this->getTemplate()->teams = $this->getTeams()->findAll();
     }
 
     public function renderTeams($teamID) {
@@ -54,6 +52,10 @@ class AdminPresenter extends AuthPresenter {
 	$list = new SolutionFormList($this, $name);
 	$list->setUp($this->getSolutions()->findByTeam($this->team));
 	return $list;
+    }
+
+    protected function createComponentSolutionImportForm($name) {
+	return new SolutionImportForm($this, $name);
     }
 
     protected function createComponentTeamForm($name) {
