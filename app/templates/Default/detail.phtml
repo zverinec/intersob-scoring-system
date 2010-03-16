@@ -1,0 +1,34 @@
+{extends ../@layout.phtml}
+
+
+{block #content}
+<?php $i = 0; $before = -1; ?>
+<table class="table-1">
+<thead>
+	<tr>
+		<th>#</th>
+		<th>Tým</th>
+		<th>Celkem</th>
+		{foreach $tasks AS $task}
+		<th class="taskID">{=$task->id_task}</th>
+		{/foreach}
+	</tr>
+</thead>
+<tbody>
+{foreach $teams AS $team}
+<tr>
+	<?php $i++; ?>
+	<td>{if $before != $team["score"]}{$i}.{/if}</td>
+	<td>{$team["team_name"]}</td>
+	<td>{$team["score"]}</td>
+	{foreach $team["id_task"] AS $task}
+	<td class="solution{if ($task["task_avg_score"] <= $task["task_score"]) && ($task["task_score"] > 0)}-over{/if}{if ($task["task_avg_score"] > $task["task_score"]) && ($task["task_score"] > 0)}-lower{/if}">
+		{if !$task["task_score"]}-{/if}
+		{=$task["task_score"]}
+	</td>
+	{/foreach}
+</tr>
+{/foreach}
+</tbody>
+</table>
+{/block}
