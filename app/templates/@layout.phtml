@@ -18,12 +18,12 @@
 		<li><a href="{=$presenter->link('Default:tasks')}" title="Stanoviště">Stanoviště</a>
 		<li><a href="{=$presenter->link('Default:detail')}" title="Podrobné výsledky">Podrobné výsledky</a>
 		<li><a href="{=$presenter->link('Admin:tasks')}" title="Editovat výsledky">Editovat výsledky</a>
-		{if $presenter->logged}
+		{if $logged}
 		<li><a href="{=$presenter->link('Admin:logout')}" title="Úkoly">Odhlásit</a>
 		{/if}
 
 	</ul>
-	{include $content}
+	{block #content}{/block}
 </div>
 </body>
 </html>

@@ -29,7 +29,8 @@ dibi::query("SET CHARACTER SET utf8");
 
 $tables = dibi::getConnection()->getDatabaseInfo()->getTables();
 if (empty($tables)) {
-	Intersob::installDatabase();
+	$import = new Import();
+	$import->installDatabase();
 }
 
 // Step 3: Get the front controller

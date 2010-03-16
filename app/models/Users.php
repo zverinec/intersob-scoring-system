@@ -8,7 +8,7 @@ class Users implements IAuthenticator {
 	public function authenticate(array $credentials) {
 		$username = $credentials[self::USERNAME];
 		
-		$row = dibi::query("SELECT password FROM ".Intersob::DATABASE_PREFIX.Intersob::DATABASE_TABLE_USERS." WHERE name = %s", $username)->fetch();
+		$row = dibi::query("SELECT password FROM [users] WHERE name = %s", $username)->fetch();
 		
 			
 		if (!$row) {

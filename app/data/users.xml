@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <users>
     <user name="admin" password="intsbadmin" />
-    <user name="barca" password="intsbbarca" />
     <user name="eva" password="intsbeva" />
     <user name="hanka" password="intsbhanka" />
-    <user name="honzap" password="intsbhonzap" />
-    <user name="hp" password="intsbhp" />
-    <user name="iva" password="intsbiva" />
-    <user name="janaf" password="intsbjanaf" />
-    <user name="janat" password="intsbjanat" />
     <user name="ondrab" password="intsbondrab" />
     <user name="petra" password="intsbpetra" />
     <user name="radek" password="intsbradek" />
     <user name="terkan" password="intsbterkan" />
-    <user name="terkap" password="intsbterkap" />
-    <user name="vojtak" password="intsbvojtak" />
+    <user name="terkad" password="intsbterkad" />
+    <user name="honzap" password="intsbhonzap" />
+    <user name="zbynek" password="intsbzbynek" />
+    <user name="zblebt" password="intsbzblebt" />
+    <user name="zuzka" password="intsbzuzka" />
+    <user name="hp" password="intsbhp" />
+    <user name="sir" password="intsbsir" />
+    <user name="pavelt" password="intsbpavelt" />
+    <user name="iva" password="intsbiva" />
 </users>
