@@ -2,6 +2,11 @@
 class Tasks extends AbstractModel
 {
 
+    public function find($id) {
+	$this->checkEmpty($id, "id");
+	return $this->findAll()->where("[id_task] = %i", $id);
+    }
+
     /**
      * @return DibiDataSource
      */
