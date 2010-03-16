@@ -8,6 +8,9 @@ class AdminPresenter extends AuthPresenter {
 
     public $refresh = FALSE;
 
+    /** @persistent */
+    public $team;
+
     /**
      *	    The page where the logged user is logged out.
      */
@@ -17,7 +20,7 @@ class AdminPresenter extends AuthPresenter {
     }
 
     /**
-     *			The page with tasks and team solutions.
+     *	    The page with tasks and team solutions.
      */
     public function renderTasks() {}
 
@@ -30,60 +33,10 @@ class AdminPresenter extends AuthPresenter {
     }
 
     public function renderTeams($teamID) {
-	$this->template->team = dibi::query("
-            SELECT * FROM ".Intersob::DATABASE_PREFIX.Intersob::DATABASE_TABLE_TEAMS."
-            WHERE id = %i
-        ",$teamID)->fetch();
-	$user = Environment::getUser();
-	$sql = "
-			SELECT *
-			FROM ".Intersob::DATABASE_PREFIX.Intersob::DATABASE_TABLE_TEAMS."
-			ORDER BY name
-		";
-	$teams = dibi::query($sql)->fetchPairs("id","name");
-	$sql = "
-            SELECT *
-    		FROM ".Intersob::DATABASE_PREFIX.Intersob::DATABASE_VIEW_TASKS_AND_SURVEYORS."
-			WHERE userName = '".$user->getIdentity()->getName()."'
-			ORDER BY taskName
-		";
-	$tasks = dibi::query($sql)->fetchPairs("taskID","taskName");
-	$usersTasks = array_keys($tasks);
-	$rows = dibi::query("
-            SELECT * FROM ".Intersob::DATABASE_PREFIX.Intersob::DATABASE_VIEW_SOLUTIONS."
-            WHERE teamID = %i
-        ",$teamID);
-	$this->template->solutions = array();
-	while ($row = $rows->fetch()) {
-	    if (in_array($row->taskID,$usersTasks)) {
-		$form = new AppForm($this,"form" . $row->solutionID);
-		$form->addHidden("solution");
-		$form->addSelect("team","",$teams)
-		    ->addRule(Form::FILLED,"Vyplňte prosím tým, který úkol vyřešil.");
-		$form->addSelect("task","",$tasks)
-		    ->addRule(Form::FILLED,"Vyplňte prosím úkol, o který se jedná.");
-		$form->addText("score","")
-		    ->addRule(Form::RANGE, "Body reprezentují pouze přirozená čísla (%d až %d)",array(1,1000000))
-		    ->addRule(Form::INTEGER,"Body reprezentují pouze přirozená čísla.")
-		    ->addRule(Form::FILLED,"Vyplňte prosím ohodnocení týmu.");
-		$form->addSubmit("edit","Oprav");
-		$form->addSubmit("delete","Smazat");
-		$form->setDefaults(array(
-		    "team" => $row->teamID,
-		    "task" => $row->taskID,
-		    "score" => $row->score,
-		    "solution" => $row->solutionID
-		));
-		$renderer = $form->getRenderer();
-		$renderer->wrappers['controls']['container'] = 'tr';
-		$renderer->wrappers['pair']['container'] = NULL;
-		$renderer->wrappers['label']['container'] = "td class=\"hidden\"";
-		$renderer->wrappers['control']['container'] = 'td';
-		$form->onSubmit[] = array($this, 'taskEditFormSubmitted');
-		$this->template->solutions[] = $form;
-	    }
+	if (!empty($teamID)) {
+	    $this->team = $teamID;
 	}
-
+	$this->getTemplate()->team = $this->getTeams()->find($this->team);
     }
 
 
@@ -92,7 +45,15 @@ class AdminPresenter extends AuthPresenter {
     }
 
     protected function createComponentTaskHistory($name) {
-	return new TaskHistory($this, $name);
+	$list = new SolutionFormList($this, $name);
+	$list->setUp($this->getSolutions()->findLastBySurveyor(Environment::getUser()->getIdentity()->getName()));
+	return $list;
+    }
+
+    protected function createComponentTeamSolutions($name) {
+	$list = new SolutionFormList($this, $name);
+	$list->setUp($this->getSolutions()->findByTeam($this->team));
+	return $list;
     }
 
     protected function createComponentTeamForm($name) {

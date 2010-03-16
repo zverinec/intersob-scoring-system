@@ -36,13 +36,16 @@ class Solutions extends AbstractModel
 	)->fetch();
     }
 
-    public function findLastByTasks(array $tasks) {
-	$this->checkEmpty($tasks, "tasks");
+    public function findLastBySurveyor($name) {
+	$this->checkEmpty($name, "name");
 	return $this->getConnection()->dataSource("
 	    SELECT *
 	    FROM [view_solutions]
-	    WHERE [id_task] IN %l", array_keys($tasks)
-	);
+	    INNER JOIN [surveyors] USING ([id_task])
+	    INNER JOIN [users] USING([id_user])
+	    WHERE [users].[name] = %s", $name,"
+	    GROUP BY [view_solutions].[id_solution]
+	");
     }
 
     /**

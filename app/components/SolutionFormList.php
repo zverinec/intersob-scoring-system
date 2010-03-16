@@ -1,11 +1,17 @@
 <?php
-class TaskHistory extends BaseControl
+
+class SolutionFormList extends BaseControl
 {
-    protected function init() {
+
+    protected function createTemplate() {
+	$template = parent::createTemplate();
+	$template->setFile(APP_DIR . "/templates/components/solutionFormList.phtml");
+	return $template;
+    }
+
+    public function setUp(DibiDataSource $solutions) {
 	$template = $this->getTemplate();
-
 	$template->solutions = array();
-
 	$tasks = $this->getTasks()->findBySurveyor(
 	    Environment::getUser()
 		->getIdentity()
@@ -13,8 +19,7 @@ class TaskHistory extends BaseControl
 	    )
 	    ->fetchPairs("id_task","task_name");
 	$teams = $this->getTeams()->findAll()->fetchPairs("id_team", "name");
-	$solutions = $this->getSolutions()->findLastByTasks($tasks);
-	while($solution = $solutions->fetch()) {
+	while ($solution = $solutions->fetch()) {
 	    $form = new AppForm($this,"form" . $solution->id_solution);
 	    $form->addHidden("solution");
 	    $form->addSelect("team","Tým:",$teams)
@@ -38,20 +43,20 @@ class TaskHistory extends BaseControl
 	    $renderer->wrappers['pair']['container'] = NULL;
 	    $renderer->wrappers['label']['container'] = "td class=\"hidden\"";
 	    $renderer->wrappers['control']['container'] = 'td';
-	    $form->onSubmit[] = array($this, 'taskEditFormSubmitted');
+	    $form->onSubmit[] = array($this, 'solutionEditFormSubmitted');
 	    $template->solutions[] = $form;
 	}
     }
 
-    public function taskEditFormSubmitted($form) {
+    public function solutionEditFormSubmitted($form) {
 	try {
 	    $solution = $this->getSolutions()->find($form["solution"]->getValue());
-	    if (!$solution) {
+	    if (empty($solution)) {
 		throw new IntersobException("Snažíte se změnit něco, co neexistuje.");
 	    }
 	    if ($form["edit"]->getValue()) {
-		$solution = $this->getSolutions()->findByTeamAndTask($form["team"]->getValue(), $form["task"]->getValue());
-		if (!empty($solution) && ($solution->id_solution != $form["solution"]->getValue())) {
+		$existed = $this->getSolutions()->findByTeamAndTask($form["team"]->getValue(), $form["task"]->getValue());
+		if (!empty($existed) && ($existed->id_solution != $form["solution"]->getValue())) {
 		    throw new IntersobException("Tým '".$solution->team_name."' už úkol '".$solution->task_name."' řešil.");
 		}
 		$changes = array(
@@ -59,7 +64,6 @@ class TaskHistory extends BaseControl
 		    "id_task" => $form["task"]->getValue(),
 		    "score" => $form["score"]->getValue()
 		);
-
 		$this->getSolutions()->update($changes)->where("[id_solution] = %i", $solution->id_solution)->execute();
 	    }
 	    else if ($form["delete"]->getValue()) {
@@ -75,4 +79,7 @@ class TaskHistory extends BaseControl
     public function render() {
 	$this->getTemplate()->render();
     }
+
+    protected function init() {}
+
 }
