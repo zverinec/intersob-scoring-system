@@ -1,17 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tasks>
-	<task name="Konstrukce">
+	<task name="Fyzikální filmovky">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="hp" />
+		</surveyors>
+	</task>
+	<task name="Komprese textu">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="ondrab" />
+			<user name="janat" />
+		</surveyors>
+	</task>
+	<task name="Matematika všemi smysly">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="sir" />
+		</surveyors>
+	</task>
+	<task name="Lidský robot">
 		<description></description>
 		<surveyors>
 			<user name="admin" />
 			<user name="hanka" />
 		</surveyors>
 	</task>
-	<task name="Konstrukce 2">
+	<task name="XOR obrázků">
 		<description></description>
 		<surveyors>
 			<user name="admin" />
-			<user name="hanka" />
+			<user name="zbynek" />
+		</surveyors>
+	</task>
+	<task name="Manévry na šachovnici">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="zbynek" />
+			<user name="eva" />
+		</surveyors>
+	</task>
+	<task name="Kuličkovod">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="zuzka" />
+		</surveyors>
+	</task>
+	<task name="Bio-předváděčka">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="terkan" />
+			<user name="petra" />
+		</surveyors>
+	</task>
+	<task name="Mikrosvět a biohodiny">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="zblebt" />
+		</surveyors>
+	</task>
+	<task name="Hra Nim">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="zbynek" />
+		</surveyors>
+	</task>
+	<task name="Párovací šifra">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+		</surveyors>
+	</task>
+	<task name="Fotky na dvoře">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+		</surveyors>
+	</task>
+	<task name="Novinový úkol">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+		</surveyors>
+	</task>
+	<task name="Vyjednávání o dohodě">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+		</surveyors>
+	</task>
+	<task name="Kódování obrázků">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+		</surveyors>
+	</task>
+	<task name="Epidemie">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+		</surveyors>
+	</task>
+	<task name="Mezihra">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="honzap" />
+			<user name="iva" />
 		</surveyors>
 	</task>
 </tasks>
