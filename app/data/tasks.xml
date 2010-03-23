@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tasks>
+	<task name="Konstrukce">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="hanka" />
+		</surveyors>
+	</task>
+	<task name="Konstrukce 2">
+		<description></description>
+		<surveyors>
+			<user name="admin" />
+			<user name="hanka" />
+		</surveyors>
+	</task>
+</tasks>

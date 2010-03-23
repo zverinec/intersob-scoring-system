@@ -1,0 +1,10 @@
+<?php echo  '<?xml version="1.0" encoding="utf-8"?>' . "\n"; ?>
+<import task-id="">
+    {foreach $teams AS $team}
+    <team>
+	<id>{$team->id_team}</id>
+	<name>{$team->name}</name>
+	<score>0</score>
+    </team>
+    {/foreach}
+</import>

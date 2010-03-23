@@ -1,0 +1,24 @@
+{extends ../@layout.phtml}
+
+
+{block #content}
+<table class="table-1">
+<thead>
+    {foreach $columns as $column}
+    <th>{$column}</th>
+    {/foreach}
+</thead>
+<tbody>
+{foreach $rows as $num => $row}
+<tr{if !$iterator->isOdd()} class="even"{/if}>
+    <td>{$row->id_task}</td>
+	<td>{$row->task_name}</td>
+	<td>{$row->avg_score}{if $row->avg_score == null}-{/if}</td>
+	<td>{$row->max_score}{if $row->max_score == null}-{/if}</td>
+	<td>{$row->min_score}{if $row->min_score == null}-{/if}</td>
+	<td>{$row->num_solutions}</td>
+</tr>
+{/foreach}
+</tbody>
+</table>
+{/block}

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>INTERdisciplinární SOutěž Brno</title>
+    <link rel="stylesheet" media="all" href="<?php echo $baseUri ?>css/main.css" type="text/css">
+    {if $presenter->refresh}
+    <script type="text/javascript">
+    	window.setInterval("window.location.reload()",10000);
+    </script>
+    {/if}
+</head>
+
+<body>
+<div id="content">
+	<ul id="menu">
+		<li><a href="{=$presenter->link('Default:')}" title="Výsledky">Výsledky</a>
+		<li><a href="{=$presenter->link('Default:tasks')}" title="Stanoviště">Stanoviště</a>
+		<li><a href="{=$presenter->link('Default:detail')}" title="Podrobné výsledky">Podrobné výsledky</a>
+		<li><a href="{=$presenter->link('Admin:tasks')}" title="Editovat výsledky">Editovat výsledky</a>
+		{if $logged}
+		<li><a href="{=$presenter->link('Admin:logout')}" title="Úkoly">Odhlásit</a>
+		{/if}
+
+	</ul>
+	{foreach $flashes AS $flash}
+	    <div class="{$flash->type}">{!=$flash->message}</div>
+	{/foreach}
+	{block #content}{/block}
+</div>
+</body>
+</html>

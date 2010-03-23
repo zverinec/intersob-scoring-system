@@ -1,0 +1,18 @@
+{extends ../@layout.phtml}
+
+{block #content}
+<div style="float:left; width: 49%">
+    <h2>Zapsat vyřešený úkol</h2>
+    {widget taskForm}
+</div>
+
+<div style="float:right;  width: 49%">
+    <h2>Importovat výsledky</h2>
+{widget solutionImportForm}
+</div>
+
+<h2>Editovat úkoly konkrétního týmu</h2>
+{widget teamForm}
+<h2>Naposledy přidaná řešení</h2>
+{widget taskHistory}
+{/block}
