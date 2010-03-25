@@ -9,9 +9,14 @@ require_once LIBS_DIR . '/Nette/loader.php';
 // for better exception and error visualisation
 
 // Step 2b: load configuration from config.ini file
+Environment::getApplication()->catchExceptions = false;
 Environment::loadConfig();
-
-Debug::enable(null, APP_DIR . "/temp/php_error.log", "jan.papousek@gmail.com");
+if (Environment::getConfig("debug")->enable) {
+    Debug::enable(Debug::DEVELOPMENT);
+    if (Environment::getConfig("debug")->profiler) {
+	Debug::enableProfiler();
+    }
+}
 
 // Step 2c: enable RobotLoader - this allows load all classes automatically
 $loader = new /*Nette\Loaders\*/RobotLoader();
@@ -23,6 +28,20 @@ $loader->register();
 require_once LIBS_DIR . '/dibi/dibi.php';
 dibi::connect(Environment::getConfig('database'));
 dibi::query("SET CHARACTER SET utf8");
+
+if (Environment::getConfig("debug")->enable && isset($_GET["reset"])) {
+    dibi::begin();
+    dibi::query("DROP TABLE IF EXISTS [surveyors]");
+    dibi::query("DROP TABLE IF EXISTS [users]");
+    dibi::query("DROP TABLE IF EXISTS [solutions]");
+    dibi::query("DROP TABLE IF EXISTS [tasks]");
+    dibi::query("DROP TABLE IF EXISTS [teams]");
+    dibi::query("DROP VIEW IF EXISTS [view_tasks_and_surveyors]");
+    dibi::query("DROP VIEW IF EXISTS [view_tasks]");
+    dibi::query("DROP VIEW IF EXISTS [view_results]");
+    dibi::query("DROP VIEW IF EXISTS [view_solutions]");
+    dibi::commit();
+}
 
 $tables = dibi::getConnection()->getDatabaseInfo()->getTables();
 if (empty($tables)) {

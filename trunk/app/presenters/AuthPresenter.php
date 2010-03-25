@@ -5,6 +5,7 @@ class AuthPresenter extends BasePresenter
     private $backlink = array();
 
     protected function startUp() {
+	parent::startup();
 	if (!Environment::getUser()->isAuthenticated()) {
 	    $this->getTemplate()->setFile(APP_DIR . "/templates/Auth/login.phtml");
 	}

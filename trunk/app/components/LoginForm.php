@@ -10,10 +10,18 @@ class LoginForm extends BaseControl
 
     public function loginFormSubmitted(Form $form) {
 	try {
-	    Environment::getUser()->authenticate($form['user_name']->getValue(), $form['password']->getValue());
+	    $values = $form->getValues();
+	    Environment::getUser()->authenticate($values['user_name'], $values['password']);
 	    $this->getPresenter()->redirect($this->getPresenter()->backlink());
 	} catch (AuthenticationException $e) {
-	    $form->addError($e->getMessage());
+	    // HACK: http://forum.nettephp.com/cs/2319-pri-zachyceni-vyjimky-bila-obrazovka?pid=20859#p20859
+	    if ($e->getCode() == IAuthenticator::IDENTITY_NOT_FOUND) {
+		echo "Uzivale neexistuje.";
+	    }
+	    else {
+		echo "Spatne heslo";
+	    }
+	    die;
 	}
     }
 
