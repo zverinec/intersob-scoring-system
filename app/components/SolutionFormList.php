@@ -17,7 +17,7 @@ class SolutionFormList extends BaseControl
 		->getIdentity()
 		->getName()
 	    )
-	    ->fetchPairs("id_task","task_name");
+	    ->fetchPairs("id_task","task_id_name");
 	$teams = $this->getTeams()->findAll()->fetchPairs("id_team", "name");
 	while ($solution = $solutions->fetch()) {
 	    $form = new AppForm($this,"form" . $solution->id_solution);

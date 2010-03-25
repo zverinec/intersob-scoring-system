@@ -31,7 +31,7 @@ class TaskForm extends BaseControl {
 	// Ukoly, ktere muze editovat prave prihlaseny uzivatel
 	$tasks = $this->getTasks()
 	    ->findBySurveyor(Environment::getUser()->getIdentity()->getName())
-	    ->fetchPairs("id_task","task_name");
+	    ->fetchPairs("id_task","task_id_name");
 	$form->addSelect("task", "Úkol:", $tasks)
 	    ->addRule(Form::FILLED,"Vyplňte prosím úkol, který tým řešil..");
 	// Tymy
