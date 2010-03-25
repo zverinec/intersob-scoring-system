@@ -16,8 +16,7 @@ class DefaultPresenter extends BasePresenter {
 	
 	public function renderDetail() {
 		$this->template->tasks = $this->getTasks()->findAll();
-		$this->getTemplate()->teams = $this->getTeams()->getResultsDetail()->fetchAssoc("id_team,=,id_task");
-		
+		$this->getTemplate()->teams = $this->getTeams()->getResultsDetail()->fetchAssoc("id_team,=,id_task");		
 	}
 	
 	public function renderTasks() {

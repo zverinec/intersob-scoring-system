@@ -20,7 +20,7 @@ class Teams extends AbstractModel {
 	return $this->getConnection()->dataSource("
 	    SELECT *
 	    FROM [view_results]
-	    ORDER BY score DESC, [team_name] ASC
+	    ORDER BY score DESC, [team_name] ASC, [id_task] ASC
 	");
      }
 
