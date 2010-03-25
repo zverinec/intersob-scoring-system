@@ -19,6 +19,7 @@
 <tr>
 	<?php $i++; ?>
 	<td>{if $before != $team["score"]}{$i}.{/if}</td>
+	<?php $before = $team["score"] ?>
 	<td>{$team["team_name"]}</td>
 	<td>{$team["score"]}</td>
 	{foreach $team["id_task"] AS $task}
