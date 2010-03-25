@@ -7,14 +7,11 @@ require_once LIBS_DIR . '/Nette/loader.php';
 
 // Step 2a: Enable Nette\Debug
 // for better exception and error visualisation
-//Debug::enable();
-
-//die('aaa');
 
 // Step 2b: load configuration from config.ini file
 Environment::loadConfig();
 
-Debug::enable();
+Debug::enable(null, APP_DIR . "/temp/php_error.log", "jan.papousek@gmail.com");
 
 // Step 2c: enable RobotLoader - this allows load all classes automatically
 $loader = new /*Nette\Loaders\*/RobotLoader();
