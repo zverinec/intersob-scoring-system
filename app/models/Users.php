@@ -9,8 +9,6 @@ class Users implements IAuthenticator {
 		$username = $credentials[self::USERNAME];
 		
 		$row = dibi::query("SELECT password FROM [users] WHERE name = %s", $username)->fetch();
-		
-			
 		if (!$row) {
 			throw new AuthenticationException("Uživatel '$username' nebyl nalezen.", self::IDENTITY_NOT_FOUND);
 		}
