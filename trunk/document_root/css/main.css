@@ -86,7 +86,7 @@ tr.even {
 }
 .solution-lower {
 	text-align: center;
-	background-color: #FF4040;
+	background-color: #008110; /* puvodni cervena: #FF4040 */
 	color: white;
 }
 th.taskID {
