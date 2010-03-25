@@ -1,22 +1,10 @@
-CREATE VIEW `view_tasks_and_surveyors` AS
-    SELECT
-	`id_task`,
-	`tasks`.`name` AS `task_name`,
-	`tasks`.`description` AS `task_description`,
-	`tasks`.`empty` AS `task_empty`,
-	`id_user` AS `id_user`,
-	`users`.`name` AS `user_name`
-    FROM `surveyors`
-    INNER JOIN `tasks` USING(`id_task`)
-    INNER JOIN `users` USING(`id_user`);
-
-
 CREATE VIEW `view_tasks` AS
     SELECT
 	`id_task`,
 	`tasks`.`name` AS `task_name`,
 	`tasks`.`description` AS `task_description`,
 	`tasks`.`empty` AS `task_empty`,
+	CONCAT_WS(': ', LPAD(`tasks`.`id_task`,2,'0'), `tasks`.`name`) AS `task_id_name`,
 	ROUND(AVG(`solutions`.`score`)) AS `avg_score`,
 	MAX(`solutions`.`score`) AS `max_score`,
 	MIN(`solutions`.`score`) AS `min_score`,
@@ -25,6 +13,15 @@ CREATE VIEW `view_tasks` AS
     LEFT JOIN `solutions` USING(`id_task`)
     GROUP BY `tasks`.`id_task`
     ORDER BY `id_task`;
+
+CREATE VIEW `view_tasks_and_surveyors` AS
+    SELECT
+	`view_tasks`.*,
+	`id_user` AS `id_user`,
+	`users`.`name` AS `user_name`
+    FROM `surveyors`
+    INNER JOIN `view_tasks` USING(`id_task`)
+    INNER JOIN `users` USING(`id_user`);
 
 CREATE VIEW `view_results` AS
     SELECT

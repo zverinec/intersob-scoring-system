@@ -23,7 +23,7 @@ class Tasks extends AbstractModel
 	    SELECT *
 	    FROM [view_tasks_and_surveyors]
 	    WHERE user_name = %s",$name,"
-	    ORDER BY task_name
+	    ORDER BY id_task
 	");
     }
 
