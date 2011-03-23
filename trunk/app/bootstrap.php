@@ -27,7 +27,6 @@ $loader->register();
 // Step 2d: establish database connection
 require_once LIBS_DIR . '/dibi/dibi.php';
 dibi::connect(Environment::getConfig('database'));
-dibi::query("SET CHARACTER SET utf8");
 
 if (Environment::getConfig("debug")->enable && isset($_GET["reset"])) {
     dibi::begin();
